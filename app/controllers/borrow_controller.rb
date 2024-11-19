@@ -18,9 +18,24 @@ class BorrowController < ApplicationController
   end
 
   def edit
+    @borrow = Borrow.find_by(id: params[:id])
+  end
+
+  def update
+    @borrow = Borrow.find(params[:id])
+    if @borrow.update(borrow_params)
+      redirect_to root_path, notice: "Borrow record updated successfully."
+    else
+      render :edit, status: :unprocessable_entity, alert: "Something went wrong"
+    end
   end
 
   def destroy
+    @borrow = Borrow.find(params[:id])
+
+    @borrow.destroy!
+
+    redirect_to root_path, notice: "Removed Borrow"
   end
 
   private

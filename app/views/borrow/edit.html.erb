@@ -1,4 +1,49 @@
-<div>
-  <h1 class="font-bold text-4xl">Borrow#edit</h1>
-  <p>Find me in app/views/borrow/edit.html.erb</p>
+<div class="space-y-6">
+  <!-- Section: Edit Borrow Record -->
+  <div class="bg-white p-6 rounded shadow-md">
+    <h2 class="text-lg font-bold mb-4 text-blue-700">Edit Borrow Record</h2>
+
+    <%= form_with model: @borrow, local: true do |form| %>
+      <% if @borrow.errors.any? %>
+        <div class="bg-red-100 p-4 rounded mb-4">
+          <ul class="list-disc pl-5 text-red-700">
+            <% @borrow.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div>
+        <%= form.label :firstname, "First Name", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_field :firstname, required: true, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+
+      <div>
+        <%= form.label :lastname, "Last Name", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_field :lastname, required: true, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :borrow_date, class: "block text-gray-700" %>
+        <%= form.date_field :borrow_date, class: "block w-full shadow-md rounded-md border-gray-400 outline-none px-3 py-2 mt-2", value: @borrow.borrow_date %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :return_date, class: "block text-gray-700" %>
+        <%= form.date_field :return_date, class: "block w-full shadow-md rounded-md border-gray-400 outline-none px-3 py-2 mt-2", value: @borrow.return_date %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :returned, class: "block text-gray-700" %>
+        <%= form.check_box :returned, class: "h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500", checked: @borrow.returned %>
+        <%= form.label :returned, "Returned", class: "ml-2 text-sm" %>
+      </div>
+
+      <div class="flex justify-end gap-4">
+        <%= form.submit "Update Borrow Record", class: "bg-blue-600 text-white px-4 py-2 rounded-md" %>
+    <% end %>
+      <%= button_to "Delete Borrow Record", borrow_path(@borrow), method: :delete, data: { confirm: "Are you sure you want to delete this borrow record?" }, class: "bg-red-600 text-white px-4 py-2 rounded-md" %>
+     </div>  
+  </div>
 </div>

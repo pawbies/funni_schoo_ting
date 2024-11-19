@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get "borrows/:id/new" => "borrow#new", as: :new_borrow
   post "borrows/create" => "borrow#create", as: :borrows
   get "borrows/:id/edit" => "borrow#edit", as: :edit_borrow
+  patch "borrows/:id" => "borrow#update", as: :borrow
+  delete "borrows/:id" => "borrow#destroy"
   get "borrows/destroy" => "borrow#destroy", as: :destroy_borrow
   resources :authors
   resources :books
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#home"
+  get "archive" => "pages#archive", as: :archive
 
   get "login" => "users#login", as: :login
   post "verify_login" => "users#verify_login", as: :verify_login
