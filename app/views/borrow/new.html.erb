@@ -1,0 +1,31 @@
+<div class="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+  <h1 class="text-xl font-bold mb-4">Borrow Book</h1>
+
+  <%= form_with model: @borrow, url: borrows_path, method: :post, local: true, class: "space-y-4" do |f| %>
+    <%= f.hidden_field :book_id, value: @book.id %>
+
+    <div>
+      <%= f.label :firstname, "First Name", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :firstname, required: true, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= f.label :lastname, "Last Name", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :lastname, required: true, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= f.label :borrow_date, "Borrow Date", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.date_field :borrow_date, required: true, value: Date.today, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= f.label :return_date, "Return Date", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.date_field :return_date, required: true, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= f.submit "Confirm Borrow", class: "w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700" %>
+    </div>
+  <% end %>
+</div>

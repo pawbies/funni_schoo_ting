@@ -1,0 +1,42 @@
+<div id="<%= dom_id book %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= book.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= book.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Isbn:</strong>
+    <%= book.isbn %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Price:</strong>
+    <%= book.price %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Amount:</strong>
+    <%= "#{book.effective_amount} / #{book.amount}" %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Authors:</strong>
+      <ul>
+      <% book.authors.all.each do |author| %>
+        <li><%= link_to author.display_name, author %></li>
+      <% end %>
+    </ul>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Publisher:</strong>
+    <%= link_to book.publisher.name, book.publisher %>
+  </p>
+
+
+</div>

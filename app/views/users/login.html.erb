@@ -1,0 +1,34 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+    <h1 class="text-2xl font-bold text-gray-800 text-center mb-6">Log In</h1>
+
+    <%= form_with url: verify_login_path, class: "space-y-4" do |f| %>
+      <!-- Email Field -->
+      <div>
+        <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, 
+          class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+
+      <!-- Password Field -->
+      <div>
+        <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.password_field :password, autocomplete: "current-password", required: true, 
+          class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <%= f.submit "Log In", class: "w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" %>
+      </div>
+    <% end %>
+
+    <!-- Links -->
+    <div class="mt-6 text-center">
+      <%= link_to "Forgot your password?", root_path, class: "text-sm text-blue-600 hover:underline" %>
+    </div>
+    <div class="mt-2 text-center">
+      <%= link_to "Sign up", root_path, class: "text-sm text-blue-600 hover:underline" %>
+    </div>
+  </div>
+</div>

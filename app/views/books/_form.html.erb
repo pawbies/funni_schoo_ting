@@ -1,0 +1,76 @@
+<%= form_with(model: book, class: "contents") do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% book.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :description %>
+    <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :isbn %>
+    <%= form.text_field :isbn, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :price %>
+    <%= form.text_field :price, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :amount %>
+    <%= form.number_field :amount, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5" data-controller="author-search">
+    <%= form.label :author_ids, "Select Authors", class: "font-semibold text-gray-700" %>
+
+    <!-- Search Bar -->
+    <input
+      type="text"
+      placeholder="Search authors..."
+      class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
+      data-author-search-target="searchInput"
+      data-action="input->author-search#filter"
+    />
+
+    <!-- Author List -->
+    <div class="mt-4 space-y-2 max-h-64 overflow-y-auto border rounded-md p-2 bg-white" data-author-search-target="authorList">
+        <% Author.all.each do |author| %>
+          <div
+            class="flex items-center space-x-2 hidden"
+            data-author-search-target="authorItem"
+            data-name="<%= author.display_name %>"
+          >
+            <%= form.check_box :author_ids, { multiple: true, id: "author_#{author.id}" }, author.id, nil %>
+            <label for="author_#{author.id}" class="text-gray-700">
+              <%= author.display_name %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :publisher_id %>
+    <%= form.text_field :publisher_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
